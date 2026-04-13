@@ -88,7 +88,6 @@
         font-size: 1.15rem;
         font-weight: 700;
         letter-spacing: 0.04em;
-        text-transform: uppercase;
       }
 
       .nav {
@@ -167,6 +166,34 @@
         font-size: clamp(1.08rem, 1.5vw, 1.26rem);
         line-height: 1.72;
         color: var(--muted);
+      }
+
+      .hero-meta {
+        display: grid;
+        gap: 6px;
+        margin: 0 0 22px;
+      }
+
+      .hero-author {
+        font-family: "Crimson Pro", serif;
+        font-size: 1.45rem;
+        font-weight: 700;
+        line-height: 1.1;
+      }
+
+      .hero-affiliation,
+      .hero-email {
+        color: var(--muted);
+        font-size: 1rem;
+      }
+
+      .hero-email a {
+        color: var(--accent);
+        text-decoration: none;
+      }
+
+      .hero-email a:hover {
+        text-decoration: underline;
       }
 
       .hero-actions {
@@ -551,15 +578,14 @@
   </head>
   <body>
     <header class="topbar">
-      <div class="topbar-inner">
-        <div class="brand">CVPR Project Page</div>
+        <div class="topbar-inner">
+        <div class="brand">Dangerous Person Detection and Tracking on Campus</div>
         <nav class="nav">
           <a href="#abstract">Abstract</a>
           <a href="#motivation">Motivation</a>
           <a href="#method">Method</a>
           <a href="#results">Video</a>
           <a href="#contributions">Contributions</a>
-          <a href="#sources">Sources</a>
         </nav>
       </div>
     </header>
@@ -568,18 +594,24 @@
       <section class="hero">
         <div class="hero-inner">
           <div class="reveal visible">
-            <div class="eyebrow">CVPR-style GitHub Project Page</div>
-            <h1>Dangerous Person Tracking for Campus Shooting Response</h1>
+            <h1>Dangerous Person Detection and Tracking on Campus</h1>
+            <div class="hero-meta">
+              <div class="hero-author">Haoyu Zhang</div>
+              <div class="hero-affiliation">Phillips Academy Andover</div>
+              <div class="hero-email">
+                <a href="mailto:haoyu.zhang2008@gmail.com">haoyu.zhang2008@gmail.com</a>
+              </div>
+            </div>
             <p class="lead">
-              在美国等海外校园环境中，枪击事件虽然属于低频风险，但一旦发生往往伴随极高后果。对监控系统而言，真正关键的不是事后回看录像，而是在危险人员尚未实施攻击前，尽早发现其与武器的关联，并在复杂校园场景中持续追踪其运动轨迹，为安保响应争取时间。
+              In overseas campus environments, school shootings are low-frequency events with extremely high consequences. For surveillance systems, the critical challenge is not retrospective video review, but early identification of dangerous individuals, reliable association between a person and a weapon, and stable tracking of that person through complex campus scenes before the situation escalates.
             </p>
             <div class="hero-actions">
-              <a class="button" href="#motivation">看问题动机</a>
-              <a class="button-secondary" href="#method">看方法架构图</a>
-              <a class="button-secondary" href="#results">看追踪视频</a>
+              <a class="button" href="#motivation">Motivation</a>
+              <a class="button-secondary" href="#method">Architecture</a>
+              <a class="button-secondary" href="#results">Video</a>
             </div>
             <p class="hero-note">
-              本页围绕“国外校园枪击风险为何推动危险人物追踪研究”这一主线组织，已可直接作为 GitHub project page 的初版内容。
+              This page is organized around one central question: why the risk of campus shootings motivates dangerous person detection and tracking in real surveillance settings.
             </p>
           </div>
 
@@ -588,19 +620,19 @@
             <div class="panel-grid">
               <div class="metric">
                 <strong>16.9</strong>
-                <span>2021 年美国高校每万名 FTE 学生报告的校园犯罪事件数</span>
+                <span>reported campus crimes per 10,000 FTE students in U.S. postsecondary institutions in 2021</span>
               </div>
               <div class="metric">
                 <strong>18</strong>
-                <span>2000-2022 年美国高校记录的 active shooter incidents</span>
+                <span>active shooter incidents recorded in U.S. postsecondary institutions from 2000 to 2022</span>
               </div>
               <div class="metric">
                 <strong>157</strong>
-                <span>上述 active shooter incidents 造成的总伤亡人数</span>
+                <span>total casualties caused by those active shooter incidents</span>
               </div>
               <div class="metric">
                 <strong>16%</strong>
-                <span>2011-2021 年总体校园犯罪率下降幅度，说明一般指标下降不等于极端风险消失</span>
+                <span>drop in overall campus crime rate from 2011 to 2021, showing that lower general crime does not eliminate extreme violence risk</span>
               </div>
             </div>
           </aside>
@@ -612,9 +644,9 @@
           <div class="section-head reveal">
             <div class="section-kicker">Abstract</div>
             <div>
-              <h2>从海外校园枪击风险出发，我们希望系统更早锁定危险人物。</h2>
+              <h2>We aim to detect and track dangerous individuals earlier in campus shooting scenarios.</h2>
               <p>
-                在许多公开的海外校园枪击案例中，危险人员在实施攻击前往往已经进入了监控覆盖范围，并以普通行人的外观在走廊、门厅或教学区域中移动。仅仅识别某一帧中的枪械或人体并不足以支持处置流程，系统必须能够联合判断“谁携带了武器”，并在遮挡、转向和跨区域移动过程中持续维持这一身份。基于这一需求，我们提出一个从人-武器检测、危险人物判定到长时序跟踪的完整框架，将危险人物追踪建模为面向校园枪击响应的连续视觉感知任务。
+                In many publicly documented school shooting cases, the dangerous individual entered the monitored area before the attack and moved through hallways, entrances, or academic spaces while still appearing as an ordinary pedestrian. Detecting a weapon or a person in a single frame is not enough for response. The system must determine who is carrying the weapon and then maintain that identity over time under occlusion, turning, and cross-area movement. Motivated by this need, we propose a complete framework that combines person-weapon detection, dangerous person determination, and long-term tracking as a continuous visual perception task for campus shooting response.
               </p>
             </div>
           </div>
@@ -622,17 +654,16 @@
           <div class="story-grid reveal">
             <div class="story-copy">
               <p>
-                我们做这个项目，并不是为了泛化意义上的安防监控，而是希望回答一个更具体也更紧迫的问题：当校园枪击风险出现时，视觉系统能否在最早阶段找到携带武器的人，并在之后的每一秒里稳定知道他在哪里？
+                This project is not about generic surveillance. It is driven by a more urgent question: when a campus shooting risk emerges, can a vision system identify the armed individual at the earliest possible stage and continue to know where that person is in every moment that follows?
               </p>
               <p>
-                因而，这个页面不是单纯展示一个 tracker，而是沿着真实处置逻辑展开：先说明为什么海外校园枪击场景需要更强的危险人物追踪能力，再展示我们的检测、判定与跟踪框架如何把“发现武器”转化为“持续锁定危险个体”。
+                For that reason, this page is not simply presenting another tracker. It follows the logic of real response: first explaining why overseas campus shooting scenarios require stronger dangerous person tracking, and then showing how our detection, association, and tracking pipeline turns weapon discovery into continuous localization of a dangerous individual.
               </p>
             </div>
             <div class="story-quote">
               <p>
-                真正需要被追踪的，不只是一个框，而是一个携带武器并持续移动的高风险个体。
+                What must be tracked is not only a bounding box, but a high-risk individual carrying a weapon and moving through a real campus environment.
               </p>
-              <span>这句话概括了本项目的核心任务定义。</span>
             </div>
           </div>
         </div>
@@ -643,9 +674,9 @@
           <div class="section-head reveal">
             <div class="section-kicker">Motivation</div>
             <div>
-              <h2>海外校园枪击并不高频，但每一次都要求更快的视觉响应。</h2>
+              <h2>Campus shootings are not frequent, but every incident demands faster visual response.</h2>
               <p>
-                校园枪击的危险之处正在于它的“低频高后果”特征。很多情况下，危险人物在袭击前已经经过门禁、走廊或教学楼入口，监控系统其实看到了他，却没有形成连续、可行动的身份轨迹。对校园安防而言，最关键的窗口往往发生在袭击前的几分钟，而不是袭击之后。
+                The danger of campus shootings lies in their low-frequency but high-consequence nature. In many cases, the dangerous individual has already passed entrances, hallways, or building access points before the attack begins. The surveillance system may have already seen that person, but failed to form a continuous and actionable identity trajectory. For campus safety, the most important window often exists in the minutes before violence starts, not after it.
               </p>
             </div>
           </div>
@@ -653,48 +684,44 @@
           <div class="story-grid reveal">
             <div class="story-copy">
               <p>
-                美国高校公开统计给出的信号非常明确。总体校园犯罪率在过去十年间有所下降，但这并不意味着校园中的极端暴力风险已经消失。官方教育安全统计显示，2000 到 2022 年，美国高校仍记录了 18 起 active shooter incidents，共造成 157 人伤亡。对这类事件而言，是否能够尽早锁定危险人物，直接决定了监控系统能否真正支持预警和响应。
-              </p>
-              <p>
-                这也解释了为什么我们关注 tracking，而不是停留在单帧 detection。枪击风险场景下，系统需要的不只是“这一帧里出现了一把枪”，而是“携带武器的人从哪里进入、现在位于哪里、经过了哪些区域、是否被短暂遮挡后再次出现”。只有将武器信息和人的连续轨迹绑定起来，监控结果才具有现实处置价值。
+                Public statistics from U.S. postsecondary institutions send a clear signal. Overall campus crime rates declined over the last decade, but extreme violence risk has not disappeared. Official education safety statistics report 18 active shooter incidents in U.S. postsecondary institutions from 2000 to 2022, causing 157 total casualties. In events of this kind, the ability to lock onto a dangerous person early can directly shape whether the surveillance system is useful for warning and response. This is also why we focus on tracking rather than stopping at single-frame detection. In a shooting risk scenario, the system must answer more than whether a gun appears in one frame. It must tell us where the armed individual entered, where that person is now, which areas have been crossed, and whether the same person reappears after temporary occlusion. Only by binding weapon cues to a continuous person trajectory can surveillance outputs become actionable in practice.
               </p>
             </div>
             <div class="story-quote">
               <p>
-                对处置最关键的不是某一帧看到了枪，而是持续知道拿枪的人在哪里。
+                The key for response is not that a gun appears in one frame, but that the system continues to know where the armed person is.
               </p>
-              <span>这也是本项目从 detection 走向 dangerous person tracking 的直接动机。</span>
             </div>
           </div>
 
           <div class="data-band reveal">
             <div class="data-point">
               <strong>20.0 → 16.9</strong>
-              <span>2011 到 2021 年，美国高校总体校园犯罪率下降约 16%，说明常规指标不能完全代表极端暴力风险。</span>
+              <span>From 2011 to 2021, overall campus crime in U.S. postsecondary institutions fell by about 16%, showing that general indicators do not fully describe extreme violence risk.</span>
             </div>
             <div class="data-point">
               <strong>18 incidents</strong>
-              <span>2000 到 2022 年，美国高校官方记录了 18 起 active shooter incidents。</span>
+              <span>From 2000 to 2022, U.S. postsecondary institutions officially recorded 18 active shooter incidents.</span>
             </div>
             <div class="data-point">
               <strong>157 casualties</strong>
-              <span>上述事件共造成 157 人伤亡，说明校园枪击虽然低频，却具有极高的后果成本。</span>
+              <span>Those incidents caused 157 total casualties, highlighting the severe cost of even infrequent campus shootings.</span>
             </div>
           </div>
 
           <div class="viz-grid reveal">
             <article class="viz-card">
-              <h3>一般校园犯罪指标下降，并不意味着枪击风险可以忽略</h3>
+              <h3>Declining general crime does not mean shooting risk can be ignored</h3>
               <p>
-                下图根据 NCES 的高校校园安全数据绘制了 2011-2021 年的总体校园犯罪率与强制性性犯罪率。它说明校园安全并不是一个可以用单一指标概括的线性改善过程，也说明我们不能因为总体事件下降，就忽略对极端暴力风险的视觉响应能力建设。
+                The chart below is based on NCES campus safety data and plots overall campus crime rates together with forcible sex offense rates from 2011 to 2021. It shows that campus safety cannot be summarized by a single linearly improving indicator, and that decreasing overall crime does not remove the need to prepare for extreme violence scenarios.
               </p>
               <svg id="trend-chart" class="chart" viewBox="0 0 560 300" aria-label="Campus crime trend chart"></svg>
             </article>
 
             <article class="viz-card">
-              <h3>校园枪击是低频事件，但代价极高</h3>
+              <h3>Campus shootings are rare events with very high cost</h3>
               <p>
-                右图概括了 2000-2022 年美国高校 active shooter incidents 的公开统计。与一般校园安全事件相比，枪击风险的数量并不高，但其伤亡代价足以说明为什么校园监控系统需要更强的危险人物识别与持续跟踪能力。
+                The chart on the right summarizes public statistics on active shooter incidents in U.S. postsecondary institutions from 2000 to 2022. Compared with more common campus safety events, shootings are relatively rare, but their casualty burden is large enough to justify stronger dangerous person detection and tracking systems.
               </p>
               <svg id="category-chart" class="chart" viewBox="0 0 560 300" aria-label="Campus shooting statistics chart"></svg>
             </article>
@@ -707,32 +734,32 @@
           <div class="section-head reveal">
             <div class="section-kicker">Challenge</div>
             <div>
-              <h2>枪击场景下，tracking 比 detection 更关键，也更难。</h2>
+              <h2>In shooting scenarios, tracking is both more important and more difficult than detection.</h2>
               <p>
-                危险人物追踪并不是把传统 MOT 或 ReID 方法直接搬到校园视频里就能解决。枪击风险场景要求系统同时理解“人”和“武器”的关系，还要在走廊、转角、遮挡和快速运动中保持目标身份的连续性。对处置而言，任何一次误跟、丢跟或误报都可能意味着错过关键响应窗口。
+                Dangerous person tracking cannot be solved by directly applying conventional MOT or ReID methods to campus footage. Shooting-risk scenes require the system to understand the relationship between people and weapons while preserving identity continuity through hallways, corners, occlusions, and fast motion. For real response, every identity switch, track loss, or false alarm can mean losing a critical intervention window.
               </p>
             </div>
           </div>
 
           <div class="challenge-grid reveal">
             <article class="challenge">
-              <h3>人和武器必须被联合理解</h3>
+              <h3>People and weapons must be understood jointly</h3>
               <p>
-                枪击风险不是由“出现了一件武器”单独定义的，而是由武器与具体人物之间的空间关联共同决定。监控系统需要判断是哪一个人携带了武器，而不是只在画面中检测到一个独立的 weapon box。
+                Shooting risk is not defined by the presence of a weapon alone, but by the spatial relationship between a weapon and a specific person. The system must determine which individual is carrying the weapon, rather than merely detecting an isolated weapon box in the image.
               </p>
             </article>
 
             <article class="challenge">
-              <h3>目标会在校园通道中持续移动</h3>
+              <h3>Targets move continuously through campus corridors</h3>
               <p>
-                危险人物可能从楼道入口进入，再沿着走廊、楼梯间或房间门口连续移动。其间只要出现一次遮挡、转身或短暂离开视野，轨迹就可能断裂，而安保人员最需要的恰恰是这一段连续移动历史。
+                A dangerous individual may enter from a hallway access point and then move continuously through corridors, stairwells, or doorways. A single occlusion, turn, or temporary disappearance can break the trajectory, yet that continuous movement history is exactly what security personnel need most.
               </p>
             </article>
 
             <article class="challenge">
-              <h3>真实处置要求的是连续身份而不是截图</h3>
+              <h3>Real response requires continuous identity, not isolated snapshots</h3>
               <p>
-                在校园枪击响应中，安保系统需要提供的是一个持续更新的危险人物状态，而不是若干孤立的检测框。只有当系统能告诉人员“目标是谁、现在在哪里、刚刚经过哪里”，视频分析结果才真正具备现实价值。
+                In campus shooting response, security systems must provide a continuously updated dangerous-person state rather than a handful of isolated detections. Video analysis only becomes practically useful when it can tell responders who the target is, where the target is now, and where that target has just been.
               </p>
             </article>
           </div>
@@ -744,9 +771,9 @@
           <div class="section-head reveal">
             <div class="section-kicker">Method</div>
             <div>
-              <h2>我们的方法把“发现武器”转化为“持续锁定携武器的人”。</h2>
+              <h2>Our method turns weapon discovery into continuous tracking of the armed individual.</h2>
               <p>
-                如图所示，我们围绕海外校园枪击响应构建了一个三阶段框架。首先，我们基于校园监控数据训练 YOLOv12，对人物与武器类别进行联合检测；随后，通过人物框与武器框之间的空间重叠和距离规则，确定当前画面中的危险人物；最后，借助 SAM2 的 memory attention 机制对该危险人物进行持续跟踪，使系统即使在遮挡和姿态变化下仍能保持身份连续性。
+                As shown in the figure, we build a three-stage framework for campus shooting response. First, we train YOLOv12 on campus surveillance data to jointly detect people and weapon categories. Second, we determine the dangerous person through spatial overlap and distance rules between person boxes and weapon boxes. Third, we use SAM2 with memory attention to maintain long-term tracking of that dangerous individual, preserving identity continuity even under occlusion and pose variation.
               </p>
             </div>
           </div>
@@ -760,19 +787,12 @@
               <div>
                 <h3>Pipeline Overview</h3>
                 <p>
-                  整个流程从左到右依次包括原始监控视频输入、人物与武器数据集构建、YOLOv12 检测器训练与推理、基于规则的危险人物判定，以及基于 SAM2 的长期跟踪。这样的设计将“检测到了什么”与“到底是谁构成威胁”清晰地区分开来，也让后续跟踪具备明确的初始化目标。
+                  From left to right, the pipeline includes raw surveillance video input, a dataset covering people and weapons, YOLOv12 training and inference, rule-based dangerous person determination, and long-term tracking with SAM2. This design clearly separates what is detected from who actually constitutes the threat, and provides a clean target initialization for the downstream tracker.
                 </p>
               </div>
 
               <div class="caption-note">
                 Our framework first detects people and weapon instances from campus surveillance streams, then determines dangerous persons through spatial association rules, and finally maintains long-term identity-consistent tracking with SAM2.
-              </div>
-
-              <div>
-                <h3>Why this design matters</h3>
-                <p>
-                  这种设计不是简单地把现有 tracker 套到校园视频上，而是显式地利用人-武器关系完成危险身份初始化，再把跟踪任务交给具有记忆能力的分割跟踪模型。这样做能够减少单纯武器检测带来的误报，也能降低危险人物在复杂运动中被重新编号或短暂丢失的风险。
-                </p>
               </div>
             </div>
           </div>
@@ -784,9 +804,9 @@
           <div class="section-head reveal">
             <div class="section-kicker">Visualization</div>
             <div>
-              <h2>视频结果展示了系统如何在枪击风险场景中持续锁定目标。</h2>
+              <h2>The video demonstrates how the system continuously localizes the target in a shooting-risk scenario.</h2>
               <p>
-                对于校园枪击响应这一类高后果任务，视频可视化不是附属材料，而是最直接的证据。相比单纯的数字指标，视频更能说明系统是否真正完成了“识别危险人物、初始化目标、跨时间持续跟踪”这一完整过程。
+                For a high-consequence task such as campus shooting response, video visualization is not supplementary material but direct evidence. Compared with isolated numeric metrics, the video more clearly shows whether the system truly completes the full pipeline of dangerous person identification, target initialization, and continuous tracking across time.
               </p>
             </div>
           </div>
@@ -794,8 +814,8 @@
           <div class="results-layout reveal">
             <div class="media-frame">
               <video controls playsinline preload="metadata">
-                <source src="video/final_combined_result.mp4" type="video/mp4" />
-                您的浏览器暂不支持 HTML5 视频播放。
+                <source src="video/final_combined_result_h264.mp4" type="video/mp4" />
+                Your browser does not support HTML5 video playback.
               </video>
             </div>
 
@@ -803,19 +823,12 @@
               <div>
                 <h3>What the video shows</h3>
                 <p>
-                  视频展示了从危险人物被判定开始，到系统持续输出稳定跟踪结果的全过程。即使目标在走廊场景中快速移动、局部遮挡或短暂偏离中心区域，跟踪结果仍能够围绕同一危险个体保持更新，而不是退化为零散的单帧检测。
+                  The video shows the complete process from dangerous-person determination to stable tracking output. Even when the target moves quickly in corridor scenes, becomes partially occluded, or temporarily shifts away from the center of view, the tracking result remains attached to the same dangerous individual instead of collapsing into scattered frame-level detections.
                 </p>
               </div>
 
               <div class="caption-note">
-                这一结果直观体现了项目的核心目标：把 armed-person detection 变成 identity-consistent dangerous person tracking。
-              </div>
-
-              <div>
-                <h3>Why this matters in practice</h3>
-                <p>
-                  在真实校园安防流程中，可视化结果的意义在于证明系统不仅能识别风险，还能在接下来的时间里继续提供可执行信息。一个方法如果只能在起始时刻发现目标，却无法稳定保持身份，那么它就很难真正服务枪击风险的快速响应。
-                </p>
+                This result directly illustrates the central goal of the project: turning armed-person detection into identity-consistent dangerous person tracking.
               </div>
             </div>
           </div>
@@ -829,81 +842,41 @@
             <div>
               <h2>Our contributions</h2>
               <p>
-                本项目的贡献集中在任务定义、系统设计和可视化验证三个层面，强调其面向海外校园枪击响应场景的实际意义。
+                The contributions of this project lie in task formulation, system design, and interpretable validation, all centered on the practical demands of overseas campus shooting response.
               </p>
             </div>
           </div>
 
           <div class="contribution-grid reveal">
             <article class="contribution">
-              <h3>1. 面向校园枪击响应的任务定义</h3>
+              <h3>1. A task formulation for campus shooting response</h3>
               <p>
-                我们将危险人物追踪明确建模为面向海外校园枪击风险的连续视觉感知任务，强调人-武器关系建模与长时序身份保持在实际处置中的核心作用。
+                We formulate dangerous person detection and tracking as a continuous visual perception task for overseas campus shooting risk, emphasizing person-weapon association and long-term identity preservation as core requirements for practical response.
               </p>
             </article>
 
             <article class="contribution">
-              <h3>2. 统一检测、判定与长期跟踪</h3>
+              <h3>2. Unified detection, determination, and long-term tracking</h3>
               <p>
-                我们构建了一个由 YOLOv12 联合检测、基于规则的危险人物判定和 SAM2 长期跟踪组成的统一流程，将“发现武器”转化为“持续锁定携武器的人”。
+                We build a unified pipeline composed of YOLOv12 joint detection, rule-based dangerous person determination, and SAM2 long-term tracking, transforming weapon discovery into continuous localization of the armed individual.
               </p>
             </article>
 
             <article class="contribution">
-              <h3>3. 面向真实监控流程的可解释验证</h3>
+              <h3>3. Interpretable validation for real surveillance workflows</h3>
               <p>
-                我们通过架构图和视频结果直观展示了危险人物从初始化到持续跟踪的全过程，使系统在校园枪击风险场景中的稳定性、连续性与可用性能够被直接观察和理解。
+                Through the architecture figure and video results, we directly visualize the full process from dangerous-person initialization to persistent tracking, making the system's stability, continuity, and usability observable in realistic campus shooting scenarios.
               </p>
             </article>
           </div>
         </div>
       </section>
 
-      <section id="sources">
-        <div class="section-inner">
-          <div class="section-head reveal">
-            <div class="section-kicker">Sources</div>
-            <div>
-              <h2>本页前半部分数据来源</h2>
-              <p>
-                前文数据主要来自美国 NCES/IES 公布的高校校园安全与 active shooter 官方统计，服务于“总体校园安全背景 + 校园枪击高后果风险”这一叙事结构。
-              </p>
-            </div>
-          </div>
-
-          <div class="source-grid reveal">
-            <article class="source">
-              <h3>NCES Digest Table 329.20</h3>
-              <p>
-                用于绘制 2011-2021 年美国高校总体校园犯罪率与强制性性犯罪率趋势图。
-                <a href="https://nces.ed.gov/programs/digest/d23/tables/dt23_329.20.asp" target="_blank" rel="noreferrer">查看原始表格</a>
-              </p>
-            </article>
-
-            <article class="source">
-              <h3>NCES / IES Press Release (July 25, 2024)</h3>
-              <p>
-                用于确认“2021 年总体犯罪率较 2011 年下降 16%”等公开结论，并作为高校校园安全变化的概述来源。
-                <a href="https://nces.ed.gov/whatsnew/press_releases/7_25_2024.asp" target="_blank" rel="noreferrer">查看发布页</a>
-              </p>
-            </article>
-
-            <article class="source">
-              <h3>NCES Condition of Education</h3>
-              <p>
-                用于补充 2000-2022 年美国高校 active shooter incidents 数量及其总伤亡统计，包括 18 起事件、157 名伤亡者、75 人死亡和 82 人受伤。
-                <a href="https://nces.ed.gov/programs/coe/indicator/a01/violent-deaths-and-shootings" target="_blank" rel="noreferrer">查看指标页</a>
-              </p>
-            </article>
-          </div>
-        </div>
-      </section>
     </main>
 
     <footer class="footer">
       <div class="footer-inner">
-        <div>Designed for a CVPR-style project presentation page.</div>
-        <div>Assets loaded from <code>main_fig.jpg</code> and <code>video/final_combined_result.mp4</code>.</div>
+        <div>Project page for dangerous person detection and tracking on campus.</div>
       </div>
     </footer>
 
