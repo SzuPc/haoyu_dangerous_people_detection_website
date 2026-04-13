@@ -569,10 +569,9 @@
         <div class="hero-inner">
           <div class="reveal visible">
             <div class="eyebrow">CVPR-style GitHub Project Page</div>
-            <h1>Dangerous Person Tracking in Campus Scenes</h1>
+            <h1>Dangerous Person Tracking for Campus Shooting Response</h1>
             <p class="lead">
-              当校园安全风险真正发生时，监控系统最缺的不是更多画面，而是更早、更稳定、可跨视角地锁定危险目标。这个页面按照
-              CVPR 项目主页的叙事方式组织内容：先解释问题为何迫切，再展示我们的方法架构与视频结果，最后把贡献讲清楚。
+              在美国等海外校园环境中，枪击事件虽然属于低频风险，但一旦发生往往伴随极高后果。对监控系统而言，真正关键的不是事后回看录像，而是在危险人员尚未实施攻击前，尽早发现其与武器的关联，并在复杂校园场景中持续追踪其运动轨迹，为安保响应争取时间。
             </p>
             <div class="hero-actions">
               <a class="button" href="#motivation">看问题动机</a>
@@ -580,7 +579,7 @@
               <a class="button-secondary" href="#results">看追踪视频</a>
             </div>
             <p class="hero-note">
-              可直接替换的占位信息：论文标题、作者、单位、论文链接、代码链接、方法名和实验指标。
+              本页围绕“国外校园枪击风险为何推动危险人物追踪研究”这一主线组织，已可直接作为 GitHub project page 的初版内容。
             </p>
           </div>
 
@@ -592,16 +591,16 @@
                 <span>2021 年美国高校每万名 FTE 学生报告的校园犯罪事件数</span>
               </div>
               <div class="metric">
-                <strong>7.5</strong>
-                <span>2021 年强制性性犯罪事件数（每万名学生）</span>
-              </div>
-              <div class="metric">
-                <strong>44%</strong>
-                <span>2021 年强制性性犯罪占校园刑事事件的比例</span>
+                <strong>18</strong>
+                <span>2000-2022 年美国高校记录的 active shooter incidents</span>
               </div>
               <div class="metric">
                 <strong>157</strong>
-                <span>2000-2022 年美国高校 active shooter incidents 造成的总伤亡人数</span>
+                <span>上述 active shooter incidents 造成的总伤亡人数</span>
+              </div>
+              <div class="metric">
+                <strong>16%</strong>
+                <span>2011-2021 年总体校园犯罪率下降幅度，说明一般指标下降不等于极端风险消失</span>
               </div>
             </div>
           </aside>
@@ -613,9 +612,9 @@
           <div class="section-head reveal">
             <div class="section-kicker">Abstract</div>
             <div>
-              <h2>故事从“看见”开始，但不能止于“看见”。</h2>
+              <h2>从海外校园枪击风险出发，我们希望系统更早锁定危险人物。</h2>
               <p>
-                传统校园安防往往依赖人工盯屏和事后回放。可一旦危险人物进入校园，真正关键的是系统是否能在拥挤、遮挡、跨摄像头切换和身份外观变化的情况下，持续锁定同一个人，并把“异常个体”从海量普通行人中迅速提出来。我们的方法正是围绕这一核心问题设计：把危险人物追踪从单一检测问题提升为面向真实校园场景的持续感知问题。
+                在许多公开的海外校园枪击案例中，危险人员在实施攻击前往往已经进入了监控覆盖范围，并以普通行人的外观在走廊、门厅或教学区域中移动。仅仅识别某一帧中的枪械或人体并不足以支持处置流程，系统必须能够联合判断“谁携带了武器”，并在遮挡、转向和跨区域移动过程中持续维持这一身份。基于这一需求，我们提出一个从人-武器检测、危险人物判定到长时序跟踪的完整框架，将危险人物追踪建模为面向校园枪击响应的连续视觉感知任务。
               </p>
             </div>
           </div>
@@ -623,17 +622,17 @@
           <div class="story-grid reveal">
             <div class="story-copy">
               <p>
-                我们并不是想制造一种“更紧张”的校园叙事，而是试图回答一个非常具体的问题：如果风险真的发生，现有视觉系统能否足够快地找到人、跟住人、在失去视野后重新找回这个人？
+                我们做这个项目，并不是为了泛化意义上的安防监控，而是希望回答一个更具体也更紧迫的问题：当校园枪击风险出现时，视觉系统能否在最早阶段找到携带武器的人，并在之后的每一秒里稳定知道他在哪里？
               </p>
               <p>
-                这也是本文页面的组织逻辑。前半部分先用公开统计数据说明校园安全问题并没有消失，只是从“高频显性事件”逐渐转向“低频但高后果”的复杂风险；后半部分则展示我们的方法如何应对校园环境中的长时序、多目标、跨视角和强遮挡挑战。
+                因而，这个页面不是单纯展示一个 tracker，而是沿着真实处置逻辑展开：先说明为什么海外校园枪击场景需要更强的危险人物追踪能力，再展示我们的检测、判定与跟踪框架如何把“发现武器”转化为“持续锁定危险个体”。
               </p>
             </div>
             <div class="story-quote">
               <p>
-                我们真正要追踪的，不只是一个 bounding box，而是在复杂现实里持续演化的风险轨迹。
+                真正需要被追踪的，不只是一个框，而是一个携带武器并持续移动的高风险个体。
               </p>
-              <span>这也是整个页面叙事的中心句，可以作为你答辩或视频解说的开场。</span>
+              <span>这句话概括了本项目的核心任务定义。</span>
             </div>
           </div>
         </div>
@@ -644,9 +643,9 @@
           <div class="section-head reveal">
             <div class="section-kicker">Motivation</div>
             <div>
-              <h2>为什么要做危险人物追踪？</h2>
+              <h2>海外校园枪击并不高频，但每一次都要求更快的视觉响应。</h2>
               <p>
-                因为校园风险并不总是以大规模突发事件的形式出现。更多时候，危险人物先以普通行人的身份出现在走廊、出入口、楼梯口和广场，再在几分钟内完成移动、停留、绕行或接近目标。对安防系统而言，最难的不是“拍到”这个人，而是在复杂人流里始终知道“他现在在哪里”。
+                校园枪击的危险之处正在于它的“低频高后果”特征。很多情况下，危险人物在袭击前已经经过门禁、走廊或教学楼入口，监控系统其实看到了他，却没有形成连续、可行动的身份轨迹。对校园安防而言，最关键的窗口往往发生在袭击前的几分钟，而不是袭击之后。
               </p>
             </div>
           </div>
@@ -654,50 +653,50 @@
           <div class="story-grid reveal">
             <div class="story-copy">
               <p>
-                公开校园统计数据给出了一个很清晰的信号：整体事件率可能在下降，但某些高风险事件并没有随之消失，甚至呈现出更值得警惕的结构性变化。换句话说，安防系统面临的挑战从“记录事件”转向“尽早识别并持续跟踪潜在危险个体”。
+                美国高校公开统计给出的信号非常明确。总体校园犯罪率在过去十年间有所下降，但这并不意味着校园中的极端暴力风险已经消失。官方教育安全统计显示，2000 到 2022 年，美国高校仍记录了 18 起 active shooter incidents，共造成 157 人伤亡。对这类事件而言，是否能够尽早锁定危险人物，直接决定了监控系统能否真正支持预警和响应。
               </p>
               <p>
-                这也解释了为什么本文关注 tracking 而不只是 detection。检测器可以在某一帧中把人找出来，但真正用于处置和联动时，学校更需要的是一个跨时间、跨区域、跨镜头连续成立的身份轨迹。
+                这也解释了为什么我们关注 tracking，而不是停留在单帧 detection。枪击风险场景下，系统需要的不只是“这一帧里出现了一把枪”，而是“携带武器的人从哪里进入、现在位于哪里、经过了哪些区域、是否被短暂遮挡后再次出现”。只有将武器信息和人的连续轨迹绑定起来，监控结果才具有现实处置价值。
               </p>
             </div>
             <div class="story-quote">
               <p>
-                总体风险可以下降，但高后果风险依旧要求系统具备更强的连续跟踪能力。
+                对处置最关键的不是某一帧看到了枪，而是持续知道拿枪的人在哪里。
               </p>
-              <span>这一段适合直接作为“Problem Motivation”页的核心文字。</span>
+              <span>这也是本项目从 detection 走向 dangerous person tracking 的直接动机。</span>
             </div>
           </div>
 
           <div class="data-band reveal">
             <div class="data-point">
               <strong>20.0 → 16.9</strong>
-              <span>2011 到 2021 年，美国高校总体校园犯罪率下降约 16%，但没有形成稳定单向趋势。</span>
+              <span>2011 到 2021 年，美国高校总体校园犯罪率下降约 16%，说明常规指标不能完全代表极端暴力风险。</span>
             </div>
             <div class="data-point">
-              <strong>2.2 → 7.5</strong>
-              <span>同一时期，强制性性犯罪率从每万名学生 2.2 上升到 7.5，风险结构发生明显变化。</span>
+              <strong>18 incidents</strong>
+              <span>2000 到 2022 年，美国高校官方记录了 18 起 active shooter incidents。</span>
             </div>
             <div class="data-point">
               <strong>157 casualties</strong>
-              <span>2000 到 2022 年，美国高校 active shooter incidents 共造成 157 人伤亡，说明低频极端事件依然具有高后果特征。</span>
+              <span>上述事件共造成 157 人伤亡，说明校园枪击虽然低频，却具有极高的后果成本。</span>
             </div>
           </div>
 
           <div class="viz-grid reveal">
             <article class="viz-card">
-              <h3>校园犯罪率的变化不是“线性变好”</h3>
+              <h3>一般校园犯罪指标下降，并不意味着枪击风险可以忽略</h3>
               <p>
-                下图用 NCES 的高校校园犯罪公开数据绘制了 2011-2021 的总体犯罪率和强制性性犯罪率。总体风险略有下降，但强风险类别持续抬升，这正是更强追踪系统的现实动机。
+                下图根据 NCES 的高校校园安全数据绘制了 2011-2021 年的总体校园犯罪率与强制性性犯罪率。它说明校园安全并不是一个可以用单一指标概括的线性改善过程，也说明我们不能因为总体事件下降，就忽略对极端暴力风险的视觉响应能力建设。
               </p>
               <svg id="trend-chart" class="chart" viewBox="0 0 560 300" aria-label="Campus crime trend chart"></svg>
             </article>
 
             <article class="viz-card">
-              <h3>2021 年事件结构已经发生变化</h3>
+              <h3>校园枪击是低频事件，但代价极高</h3>
               <p>
-                在 2021 年的高校校园刑事事件里，强制性性犯罪已经成为最主要类别之一。面对这种结构变化，仅靠“事后检索录像”远远不够，系统必须尽早持续锁定高风险个体。
+                右图概括了 2000-2022 年美国高校 active shooter incidents 的公开统计。与一般校园安全事件相比，枪击风险的数量并不高，但其伤亡代价足以说明为什么校园监控系统需要更强的危险人物识别与持续跟踪能力。
               </p>
-              <svg id="category-chart" class="chart" viewBox="0 0 560 300" aria-label="Campus crime category chart"></svg>
+              <svg id="category-chart" class="chart" viewBox="0 0 560 300" aria-label="Campus shooting statistics chart"></svg>
             </article>
           </div>
         </div>
@@ -708,32 +707,32 @@
           <div class="section-head reveal">
             <div class="section-kicker">Challenge</div>
             <div>
-              <h2>这个问题为什么难？</h2>
+              <h2>枪击场景下，tracking 比 detection 更关键，也更难。</h2>
               <p>
-                危险人物追踪并不是把传统 MOT 或 ReID 方法直接搬到校园场景里就能解决。校园视频中的目标密集、行为转移频繁、视角覆盖分散，真正困难的是让轨迹在时间上不断裂、在身份上不漂移、在响应上不过慢。
+                危险人物追踪并不是把传统 MOT 或 ReID 方法直接搬到校园视频里就能解决。枪击风险场景要求系统同时理解“人”和“武器”的关系，还要在走廊、转角、遮挡和快速运动中保持目标身份的连续性。对处置而言，任何一次误跟、丢跟或误报都可能意味着错过关键响应窗口。
               </p>
             </div>
           </div>
 
           <div class="challenge-grid reveal">
             <article class="challenge">
-              <h3>人流拥挤与外观相似</h3>
+              <h3>人和武器必须被联合理解</h3>
               <p>
-                校园场景里存在大量穿着相近、尺度相近的学生群体。危险目标一旦混入人流，单帧检测结果很容易产生 ID switch，导致系统“看到了人，却跟错了人”。
+                枪击风险不是由“出现了一件武器”单独定义的，而是由武器与具体人物之间的空间关联共同决定。监控系统需要判断是哪一个人携带了武器，而不是只在画面中检测到一个独立的 weapon box。
               </p>
             </article>
 
             <article class="challenge">
-              <h3>跨区域移动与长时遮挡</h3>
+              <h3>目标会在校园通道中持续移动</h3>
               <p>
-                目标可能在出入口、转角、楼梯口或车辆后方短暂消失，再从另一个区域重新出现。没有稳定的时空建模，轨迹会被切碎，后续联动就会失去依据。
+                危险人物可能从楼道入口进入，再沿着走廊、楼梯间或房间门口连续移动。其间只要出现一次遮挡、转身或短暂离开视野，轨迹就可能断裂，而安保人员最需要的恰恰是这一段连续移动历史。
               </p>
             </article>
 
             <article class="challenge">
-              <h3>处置要求的是“连续身份”</h3>
+              <h3>真实处置要求的是连续身份而不是截图</h3>
               <p>
-                真正服务校园安全的系统，不是提供一系列孤立截图，而是给出一个持续更新的危险个体轨迹，让安保人员知道目标从哪里来、当前在哪里、可能要去哪里。
+                在校园枪击响应中，安保系统需要提供的是一个持续更新的危险人物状态，而不是若干孤立的检测框。只有当系统能告诉人员“目标是谁、现在在哪里、刚刚经过哪里”，视频分析结果才真正具备现实价值。
               </p>
             </article>
           </div>
@@ -745,9 +744,9 @@
           <div class="section-head reveal">
             <div class="section-kicker">Method</div>
             <div>
-              <h2>我们的方法：把“检测到目标”变成“持续锁定目标”。</h2>
+              <h2>我们的方法把“发现武器”转化为“持续锁定携武器的人”。</h2>
               <p>
-                围绕上述挑战，我们的方法从架构层面把检测、身份关联、时序更新和危险目标的持续管理串成一个完整流程。它不再把每一帧都当作彼此独立的判断，而是让系统在时间上拥有记忆，在空间上具备重识别能力，在应用层上能够面向校园安全进行持续预警。
+                如图所示，我们围绕海外校园枪击响应构建了一个三阶段框架。首先，我们基于校园监控数据训练 YOLOv12，对人物与武器类别进行联合检测；随后，通过人物框与武器框之间的空间重叠和距离规则，确定当前画面中的危险人物；最后，借助 SAM2 的 memory attention 机制对该危险人物进行持续跟踪，使系统即使在遮挡和姿态变化下仍能保持身份连续性。
               </p>
             </div>
           </div>
@@ -759,21 +758,20 @@
 
             <div class="media-caption">
               <div>
-                <h3>架构图应该讲什么</h3>
+                <h3>Pipeline Overview</h3>
                 <p>
-                  这张图适合承担页面里最重要的一次“技术解释”。建议你在最终论文版本里用颜色区分输入视频流、候选目标检测、危险人物建模、时序关联和最终轨迹输出五个阶段，让读者一眼看出你的系统不是单点模块，而是闭环流程。
+                  整个流程从左到右依次包括原始监控视频输入、人物与武器数据集构建、YOLOv12 检测器训练与推理、基于规则的危险人物判定，以及基于 SAM2 的长期跟踪。这样的设计将“检测到了什么”与“到底是谁构成威胁”清晰地区分开来，也让后续跟踪具备明确的初始化目标。
                 </p>
               </div>
 
               <div class="caption-note">
-                推荐配套说明文字：
-                “Given a campus surveillance stream, our framework continuously localizes, associates, and updates the identity state of a dangerous person under occlusion, appearance ambiguity, and long-range movement.”
+                Our framework first detects people and weapon instances from campus surveillance streams, then determines dangerous persons through spatial association rules, and finally maintains long-term identity-consistent tracking with SAM2.
               </div>
 
               <div>
-                <h3>页面中的叙事作用</h3>
+                <h3>Why this design matters</h3>
                 <p>
-                  在故事线上，这一节承担“转折”作用。前面说清楚问题有多难，这里要让读者感受到：我们不是简单地把已有 tracker 换个数据集，而是专门针对校园危险人物持续跟踪这个任务重新组织了系统设计。
+                  这种设计不是简单地把现有 tracker 套到校园视频上，而是显式地利用人-武器关系完成危险身份初始化，再把跟踪任务交给具有记忆能力的分割跟踪模型。这样做能够减少单纯武器检测带来的误报，也能降低危险人物在复杂运动中被重新编号或短暂丢失的风险。
                 </p>
               </div>
             </div>
@@ -786,9 +784,9 @@
           <div class="section-head reveal">
             <div class="section-kicker">Visualization</div>
             <div>
-              <h2>视频可视化：方法是否真的“跟住了”？</h2>
+              <h2>视频结果展示了系统如何在枪击风险场景中持续锁定目标。</h2>
               <p>
-                对于危险人物追踪任务，视频展示不是附属材料，而是最直观的证据。比起单张定量表格，读者更容易从视频里看到目标在拥挤场景中是否稳定、在遮挡后是否恢复、在跨区域后是否还能延续同一身份。
+                对于校园枪击响应这一类高后果任务，视频可视化不是附属材料，而是最直接的证据。相比单纯的数字指标，视频更能说明系统是否真正完成了“识别危险人物、初始化目标、跨时间持续跟踪”这一完整过程。
               </p>
             </div>
           </div>
@@ -803,20 +801,20 @@
 
             <div class="media-caption">
               <div>
-                <h3>建议你在讲解视频时强调三点</h3>
+                <h3>What the video shows</h3>
                 <p>
-                  第一，目标最初是如何被识别为危险人物候选；第二，当目标进入人群或短暂被遮挡时，系统如何维持身份连续性；第三，目标重新出现后，系统如何快速恢复并继续输出稳定轨迹。
+                  视频展示了从危险人物被判定开始，到系统持续输出稳定跟踪结果的全过程。即使目标在走廊场景中快速移动、局部遮挡或短暂偏离中心区域，跟踪结果仍能够围绕同一危险个体保持更新，而不是退化为零散的单帧检测。
                 </p>
               </div>
 
               <div class="caption-note">
-                如果后续你还有更多可视化素材，可以在这里扩展为多视频布局，例如“正常场景 / 遮挡场景 / 跨视角场景”三段对比展示。
+                这一结果直观体现了项目的核心目标：把 armed-person detection 变成 identity-consistent dangerous person tracking。
               </div>
 
               <div>
-                <h3>为什么这一节重要</h3>
+                <h3>Why this matters in practice</h3>
                 <p>
-                  因为危险人物追踪最终要服务现实决策。一个方法即使在某个指标上更高，如果视频里频繁漂移、丢失或误跟，它依然很难真正用于校园安防联动。这个页面把视频放在核心位置，就是为了把“可信度”直观传达出来。
+                  在真实校园安防流程中，可视化结果的意义在于证明系统不仅能识别风险，还能在接下来的时间里继续提供可执行信息。一个方法如果只能在起始时刻发现目标，却无法稳定保持身份，那么它就很难真正服务枪击风险的快速响应。
                 </p>
               </div>
             </div>
@@ -829,91 +827,34 @@
           <div class="section-head reveal">
             <div class="section-kicker">Contributions</div>
             <div>
-              <h2>页面里建议这样总结贡献。</h2>
+              <h2>Our contributions</h2>
               <p>
-                如果你希望文案更像 CVPR 项目页而不是宣传页，贡献部分最好简洁、有技术指向、避免空泛形容词。下面这三条可以直接作为页面中的 contribution 文案骨架。
+                本项目的贡献集中在任务定义、系统设计和可视化验证三个层面，强调其面向海外校园枪击响应场景的实际意义。
               </p>
             </div>
           </div>
 
           <div class="contribution-grid reveal">
             <article class="contribution">
-              <h3>1. 面向校园安防的新任务叙事</h3>
+              <h3>1. 面向校园枪击响应的任务定义</h3>
               <p>
-                我们将危险人物追踪明确建模为一个面向真实校园场景的持续视觉感知任务，强调系统在长时序、复杂人流和高风险个体定位中的实际价值。
+                我们将危险人物追踪明确建模为面向海外校园枪击风险的连续视觉感知任务，强调人-武器关系建模与长时序身份保持在实际处置中的核心作用。
               </p>
             </article>
 
             <article class="contribution">
-              <h3>2. 统一检测、关联与时序更新</h3>
+              <h3>2. 统一检测、判定与长期跟踪</h3>
               <p>
-                我们的方法把目标检测、身份保持、时序关联和持续轨迹管理整合为一个统一框架，从而提升危险目标在遮挡和跨区域移动条件下的可追踪性。
+                我们构建了一个由 YOLOv12 联合检测、基于规则的危险人物判定和 SAM2 长期跟踪组成的统一流程，将“发现武器”转化为“持续锁定携武器的人”。
               </p>
             </article>
 
             <article class="contribution">
-              <h3>3. 可解释的可视化验证方式</h3>
+              <h3>3. 面向真实监控流程的可解释验证</h3>
               <p>
-                除了定量结果外，我们提供面向真实监控流程的视频可视化，使读者能够直接观察系统在复杂校园场景中的稳定性、连续性与恢复能力。
+                我们通过架构图和视频结果直观展示了危险人物从初始化到持续跟踪的全过程，使系统在校园枪击风险场景中的稳定性、连续性与可用性能够被直接观察和理解。
               </p>
             </article>
-          </div>
-        </div>
-      </section>
-
-      <section id="highlights">
-        <div class="section-inner">
-          <div class="section-head reveal">
-            <div class="section-kicker">Suggested Extras</div>
-            <div>
-              <h2>如果你后续补实验，这里可以继续长成完整论文主页。</h2>
-              <p>
-                当前页面已经完成“能讲清故事”的基础版本。后续如果你有 benchmark、消融实验或多场景对比，可以直接接在这一节后面扩展成完整的学术项目主页。
-              </p>
-            </div>
-          </div>
-
-          <div class="highlight-grid reveal">
-            <article class="highlight">
-              <h3>Benchmark Results</h3>
-              <p>
-                放一张定量表格，突出你相对基线在 HOTA、IDF1、MOTA 或自定义风险追踪指标上的提升。
-              </p>
-            </article>
-
-            <article class="highlight">
-              <h3>Ablation Study</h3>
-              <p>
-                说明危险目标记忆模块、重识别模块、时序更新模块分别带来了什么提升，这一节很适合打消“只是工程堆叠”的质疑。
-              </p>
-            </article>
-
-            <article class="highlight">
-              <h3>Failure Cases</h3>
-              <p>
-                展示极端遮挡、目标服饰变化、超远距离小目标等失败案例，会让页面更像严肃研究项目，也更符合 CVPR 审稿与答辩语境。
-              </p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section id="conclusion">
-        <div class="section-inner">
-          <div class="section-head reveal">
-            <div class="section-kicker">Conclusion</div>
-            <div>
-              <h2>最后一段，建议落在“更早、更稳、更可用”。</h2>
-              <p>
-                最后的结尾不需要再重复模型细节，而要把读者带回最初的问题：为什么校园安防需要危险人物追踪。结论的重点应该是，你的方法不是把监控系统做得更复杂，而是让系统更早发现目标、更稳定保持身份、更接近真实处置流程。
-              </p>
-            </div>
-          </div>
-
-          <div class="closing reveal">
-            <p>
-              综上，危险人物追踪不是一个抽象的视觉任务，而是校园安全场景中的关键能力建设。我们希望通过一个面向真实复杂环境设计的追踪框架，把“事后检索”推进为“持续感知”，把“看到某个人”推进为“在整个事件过程中持续知道这个人在哪里”。如果前面的数据回答了“为什么现在需要做这件事”，那么方法图和视频结果回答的就是“我们具体怎样把这件事做成”。
-            </p>
           </div>
         </div>
       </section>
@@ -925,7 +866,7 @@
             <div>
               <h2>本页前半部分数据来源</h2>
               <p>
-                为了让页面更像学术项目页而不是随意拼贴的数据海报，这里把前文使用的公开来源放出来。当前采用的是美国 NCES/IES 的高校校园安全公开统计；如果你后续想切换到中国或特定地区数据，我们也可以再替换成对应地区的官方来源。
+                前文数据主要来自美国 NCES/IES 公布的高校校园安全与 active shooter 官方统计，服务于“总体校园安全背景 + 校园枪击高后果风险”这一叙事结构。
               </p>
             </div>
           </div>
@@ -934,7 +875,7 @@
             <article class="source">
               <h3>NCES Digest Table 329.20</h3>
               <p>
-                用于绘制 2011-2021 高校校园犯罪率、强制性性犯罪率和 2021 年事件结构图。
+                用于绘制 2011-2021 年美国高校总体校园犯罪率与强制性性犯罪率趋势图。
                 <a href="https://nces.ed.gov/programs/digest/d23/tables/dt23_329.20.asp" target="_blank" rel="noreferrer">查看原始表格</a>
               </p>
             </article>
@@ -942,7 +883,7 @@
             <article class="source">
               <h3>NCES / IES Press Release (July 25, 2024)</h3>
               <p>
-                用于确认“2021 年总体犯罪率较 2011 年下降 16%”以及“强制性性犯罪占比 44%”等公开结论。
+                用于确认“2021 年总体犯罪率较 2011 年下降 16%”等公开结论，并作为高校校园安全变化的概述来源。
                 <a href="https://nces.ed.gov/whatsnew/press_releases/7_25_2024.asp" target="_blank" rel="noreferrer">查看发布页</a>
               </p>
             </article>
@@ -950,7 +891,7 @@
             <article class="source">
               <h3>NCES Condition of Education</h3>
               <p>
-                用于补充 2000-2022 年 postsecondary active shooter incidents 与 casualties 的公开统计说明。
+                用于补充 2000-2022 年美国高校 active shooter incidents 数量及其总伤亡统计，包括 18 起事件、157 名伤亡者、75 人死亡和 82 人受伤。
                 <a href="https://nces.ed.gov/programs/coe/indicator/a01/violent-deaths-and-shootings" target="_blank" rel="noreferrer">查看指标页</a>
               </p>
             </article>
@@ -974,12 +915,9 @@
       };
 
       const categoryData = [
-        { label: "Forcible sex offenses", value: 7.478 },
-        { label: "Burglary", value: 4.656 },
-        { label: "Motor vehicle theft", value: 2.541 },
-        { label: "Aggravated assault", value: 1.498 },
-        { label: "Robbery", value: 0.378 },
-        { label: "Arson", value: 0.310 }
+        { label: "Incidents", value: 18 },
+        { label: "Killed", value: 75 },
+        { label: "Wounded", value: 82 }
       ];
 
       function createSvg(tag, attrs = {}) {
@@ -1097,14 +1035,14 @@
         const svg = document.getElementById("category-chart");
         const width = 560;
         const height = 300;
-        const margin = { top: 24, right: 18, bottom: 72, left: 52 };
+        const margin = { top: 24, right: 18, bottom: 58, left: 52 };
         const chartWidth = width - margin.left - margin.right;
         const chartHeight = height - margin.top - margin.bottom;
-        const yMax = 8.5;
+        const yMax = 90;
 
-        const barWidth = chartWidth / categoryData.length - 18;
+        const barWidth = chartWidth / categoryData.length - 26;
 
-        [0, 2, 4, 6, 8].forEach((tick) => {
+        [0, 20, 40, 60, 80].forEach((tick) => {
           const yPos = margin.top + chartHeight - (tick / yMax) * chartHeight;
           const line = createSvg("line", {
             x1: margin.left,
@@ -1127,7 +1065,7 @@
         });
 
         categoryData.forEach((item, index) => {
-          const xPos = margin.left + index * (barWidth + 18) + 12;
+          const xPos = margin.left + index * (barWidth + 26) + 18;
           const barHeight = (item.value / yMax) * chartHeight;
           const yPos = margin.top + chartHeight - barHeight;
           const bar = createSvg("rect", {
@@ -1136,7 +1074,7 @@
             width: barWidth,
             height: barHeight,
             rx: "8",
-            fill: index === 0 ? "#9d1f26" : "#c6a466"
+            fill: index === 0 ? "#9d1f26" : index === 1 ? "#b4893b" : "#d2b06f"
           });
           const value = createSvg("text", {
             x: xPos + barWidth / 2,
@@ -1150,21 +1088,12 @@
 
           const label = createSvg("text", {
             x: xPos + barWidth / 2,
-            y: height - 40,
+            y: height - 26,
             "text-anchor": "middle",
             fill: "#655952",
-            "font-size": "11"
+            "font-size": "12"
           });
-
-          const words = item.label.split(" ");
-          words.slice(0, 2).forEach((word, lineIndex) => {
-            const tspan = createSvg("tspan", {
-              x: xPos + barWidth / 2,
-              dy: lineIndex === 0 ? "0" : "14"
-            });
-            tspan.textContent = lineIndex === 0 ? word : `${word}${words[2] && lineIndex === 1 ? "..." : ""}`;
-            label.appendChild(tspan);
-          });
+          label.textContent = item.label;
 
           svg.appendChild(bar);
           svg.appendChild(value);
